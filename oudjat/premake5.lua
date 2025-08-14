@@ -26,6 +26,9 @@ project "oudjat"
 	targetdir(target_dir .. output_dir .. "%{prj.name}/")
 	objdir(obj_dir .. output_dir .. "%{prj.name}/")
 
+	pchheader "oudjatpch.h"
+	pchsource "source/oudjatpch.cpp"
+
 	files {
 		"include/**.h",
 		"source/**.cpp",
