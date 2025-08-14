@@ -18,3 +18,5 @@
 // For more details, see the LICENSE file at the root of the project.
 
 #pragma once
+
+#include "oudjat/export.h"
