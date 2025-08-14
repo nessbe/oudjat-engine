@@ -41,6 +41,17 @@ project "oudjat"
 	filter "system:windows"
 		systemversion "latest"
 
+	filter "kind:StaticLib"
+		defines {
+			"OUDJAT_LINKAGE_STATIC",
+		}
+
+	filter "kind:SharedLib"
+		defines {
+			"OUDJAT_LINKAGE_DYNAMIC",
+			"OUDJAT_BUILD_DLL",
+		}
+
 	filter "configurations:Debug"
 		defines {
 			"OUDJAT_DEBUG",
@@ -61,3 +72,5 @@ project "oudjat"
 		}
 		optimize "Full"
 		runtime "Release"
+
+		staticruntime "On"
