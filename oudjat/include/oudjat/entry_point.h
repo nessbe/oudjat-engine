@@ -19,25 +19,15 @@
 
 #pragma once
 
-#include "oudjat/export.h"
+#include "oudjat/application.h"
 
-namespace oudjat
+extern oudjat::application* oudjat::create_application();
+
+int main(int argc, char** argv)
 {
-	class application
-	{
-	public:
-		using exit_code_t = int;
+	oudjat::application* application = oudjat::create_application();
+	oudjat::application::exit_code_t exit_code = application->run();
+	delete application;
 
-	public:
-		OUDJAT_API application();
-		OUDJAT_API virtual ~application();
-
-		OUDJAT_API virtual exit_code_t run();
-
-	private:
-		OUDJAT_API virtual void initialize() { }
-		OUDJAT_API virtual void shutdown() { }
-	};
-
-	application* create_application();
+	return static_cast<int>(exit_code);
 }
