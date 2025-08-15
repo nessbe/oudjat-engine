@@ -1,4 +1,4 @@
-// File:        oudjatpch.h
+// File:        utils.h
 // Project:     oudjat-engine
 // Repository:  https://github.com/nessbe/oudjat-engine
 //
@@ -19,5 +19,4 @@
 
 #pragma once
 
-#include "oudjat/export.h"
-#include "oudjat/utils.h"
+#define OUDJAT_GETTER [[nodiscard]] inline
