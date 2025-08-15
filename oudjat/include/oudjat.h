@@ -22,3 +22,5 @@
 #include "oudjat/entry_point.h"
 
 #include "oudjat/application.h"
+
+#include "oudjat/window.h"

@@ -19,5 +19,8 @@
 
 #pragma once
 
+#include <string>
+
 #include "oudjat/export.h"
 #include "oudjat/utils.h"
+
