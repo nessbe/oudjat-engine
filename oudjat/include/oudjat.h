@@ -19,4 +19,6 @@
 
 #pragma once
 
+#include "oudjat/entry_point.h"
+
 #include "oudjat/application.h"
