@@ -1,4 +1,4 @@
--- File:        premake5.lua (root)
+-- File:        premake5.lua (sandbox)
 -- Project:     oudjat-engine
 -- Repository:  https://github.com/nessbe/oudjat-engine
 --
@@ -17,21 +17,49 @@
 --
 -- For more details, see the LICENSE file at the root of the project.
 
-include "settings.lua"
+project "sandbox"
+	kind "ConsoleApp"
 
-workspace "oudjat-engine"
-	configurations {
-		"Debug",
-		"Release",
-		"Dist",
+	language "C++"
+	cppdialect "C++17"
+
+	targetdir(target_dir .. output_dir .. "%{prj.name}/")
+	objdir(obj_dir .. output_dir .. "%{prj.name}/")
+
+	files {
+		"source/**.cpp",
 	}
 
-	platforms {
-		"x64",
+	includedirs {
+		"%{wks.location}/oudjat/include/",
 	}
 
-	startproject "sandbox"
+	defines {
+		"OUDJAT_LINKAGE_DYNAMIC",
+	}
 
-include "sandbox"
-include "oudjat"
+	links {
+		"oudjat",
+	}
 
+	dependson {
+		"oudjat",
+	}
+
+	prebuildcommands {
+		"{COPY} " .. target_dir .. output_dir .. "oudjat/oudjat.dll %{cfg.targetdir}"
+	}
+
+	filter "configurations:Debug"
+		symbols "On"
+		optimize "Off"
+
+	filter "configurations:Release"
+		optimize "On"
+		runtime "Release"
+
+	filter "configurations:Dist"
+		optimize "Full"
+		runtime "Release"
+
+		staticruntime "On"
