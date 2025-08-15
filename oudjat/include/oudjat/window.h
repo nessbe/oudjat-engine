@@ -1,4 +1,4 @@
-// File:        oudjatpch.h
+// File:        window.h
 // Project:     oudjat-engine
 // Repository:  https://github.com/nessbe/oudjat-engine
 //
@@ -24,3 +24,25 @@
 #include "oudjat/export.h"
 #include "oudjat/utils.h"
 
+namespace oudjat
+{
+	class window
+	{
+	public:
+		using dimension_t = unsigned int;
+
+	public:
+		OUDJAT_API window(dimension_t p_width, dimension_t p_height, const std::string& p_title);
+		OUDJAT_API virtual ~window() = 0;
+
+		OUDJAT_API OUDJAT_GETTER virtual bool is_vsync() const noexcept;
+		OUDJAT_API virtual void set_vsync(bool p_enabled) noexcept;
+
+		OUDJAT_API OUDJAT_GETTER virtual void* get_native_handle() const = 0;
+
+	private:
+		dimension_t width, height;
+		std::string title;
+		bool vsync_enabled = false;
+	};
+}

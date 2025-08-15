@@ -1,4 +1,4 @@
-// File:        oudjatpch.h
+// File:        window.cpp
 // Project:     oudjat-engine
 // Repository:  https://github.com/nessbe/oudjat-engine
 //
@@ -17,10 +17,23 @@
 //
 // For more details, see the LICENSE file at the root of the project.
 
-#pragma once
+#include "oudjatpch.h"
+#include "oudjat/window.h"
 
-#include <string>
+namespace oudjat
+{
+	window::window(dimension_t p_width, dimension_t p_height, const std::string& p_title)
+		: width(p_width), height(p_height), title(p_title), vsync_enabled(false)
+	{
+	}
 
-#include "oudjat/export.h"
-#include "oudjat/utils.h"
+	bool window::is_vsync() const noexcept
+	{
+		return vsync_enabled;
+	}
 
+	void window::set_vsync(bool p_enabled) noexcept
+	{
+		vsync_enabled = p_enabled;
+	}
+}
