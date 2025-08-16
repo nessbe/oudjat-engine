@@ -1,4 +1,4 @@
-// File:        oudjatpch.h
+// File:        scope.h
 // Project:     oudjat-engine
 // Repository:  https://github.com/nessbe/oudjat-engine
 //
@@ -19,10 +19,16 @@
 
 #pragma once
 
-#include <string>
 #include <memory>
 
-#include "oudjat/export.h"
-#include "oudjat/utils.h"
+namespace oudjat
+{
+	template<typename T>
+	using scope = std::unique_ptr<T>;
 
-#include "oudjat/memory.h"
+	template<typename T, typename... VarArgs>
+	scope<T> make_scoped(VarArgs&&... arguments)
+	{
+		return std::make_unique<T>(std::forward<VarArgs>(arguments)...);
+	}
+}

@@ -23,6 +23,7 @@
 namespace oudjat
 {
 	application::application()
+		: window_(nullptr)
 	{
 		initialize();
 	}
@@ -35,5 +36,10 @@ namespace oudjat
 	application::exit_code_t application::run()
 	{
 		return static_cast<application::exit_code_t>(0);
+	}
+
+	window& application::get_window() const noexcept
+	{
+		return *window_;
 	}
 }

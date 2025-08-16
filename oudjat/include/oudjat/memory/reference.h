@@ -1,4 +1,4 @@
-// File:        oudjatpch.h
+// File:        reference.h
 // Project:     oudjat-engine
 // Repository:  https://github.com/nessbe/oudjat-engine
 //
@@ -19,10 +19,16 @@
 
 #pragma once
 
-#include <string>
 #include <memory>
 
-#include "oudjat/export.h"
-#include "oudjat/utils.h"
+namespace oudjat
+{
+	template<typename T>
+	using reference = std::shared_ptr<T>;
 
-#include "oudjat/memory.h"
+	template<typename T, typename... VarArgs>
+	reference<T> make_referenced(VarArgs&&... arguments)
+	{
+		return std::make_shared<T>(std::forward<VarArgs>(arguments)...);
+	}
+}
