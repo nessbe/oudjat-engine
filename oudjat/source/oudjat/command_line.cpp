@@ -1,4 +1,4 @@
-// File:        application.h
+// File:        command_line.cpp
 // Project:     oudjat-engine
 // Repository:  https://github.com/nessbe/oudjat-engine
 //
@@ -17,37 +17,47 @@
 //
 // For more details, see the LICENSE file at the root of the project.
 
-#pragma once
-
-#include "oudjat/export.h"
-
-#include "oudjat/window.h"
-#include "oudjat/memory.h"
-
+#include "oudjatpch.h"
 #include "oudjat/command_line.h"
 
 namespace oudjat
 {
-	class application
+	command_line::command_line(int argc, char** argv)
 	{
-	public:
-		using exit_code_t = int;
+		if (argc > 0)
+		{
+			program_name_ = argv[0];
+		}
 
-	public:
-		OUDJAT_API application();
-		OUDJAT_API virtual ~application();
+		for (int i = 1; i < argc; i++)
+		{
+			arguments_.emplace_back(argv[i]);
+		}
 
-		OUDJAT_API virtual exit_code_t run(command_line arguments);
+		argument_count_ = static_cast<index_t>(arguments_.size());
+	}
 
-		OUDJAT_API OUDJAT_GETTER window& get_window() const noexcept;
+	command_line::index_t command_line::size() const noexcept
+	{
+		return argument_count_;
+	}
 
-	protected:
-		scope<window> window_;
+	const std::string& command_line::get_program_name() const noexcept
+	{
+		return program_name_;
+	}
 
-	private:
-		OUDJAT_API virtual void initialize() { }
-		OUDJAT_API virtual void shutdown() { }
-	};
+	bool command_line::has_argument(command_line::index_t index) const noexcept
+	{
+		return index < size();
+	}
 
-	application* create_application();
+	std::optional<std::string> command_line::get_argument(command_line::index_t index) const
+	{
+		if (has_argument(index))
+		{
+			return std::string(arguments_[index]);
+		}
+		return std::nullopt;
+	}
 }

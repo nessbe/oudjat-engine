@@ -19,4 +19,16 @@
 
 #pragma once
 
+#include "oudjat/export.h"
+
 #define OUDJAT_GETTER [[nodiscard]] inline
+
+#define ITERATOR_WRAPPER(type, member) \
+	OUDJAT_API OUDJAT_GETTER std::vector<type>::iterator begin() noexcept { return member.begin(); } \
+	OUDJAT_API OUDJAT_GETTER std::vector<type>::iterator end() noexcept { return member.end(); } \
+	OUDJAT_API OUDJAT_GETTER std::vector<type>::const_iterator cbegin() const noexcept { return member.cbegin(); } \
+	OUDJAT_API OUDJAT_GETTER std::vector<type>::const_iterator cend() const noexcept { return member.cend(); } \
+	OUDJAT_API OUDJAT_GETTER std::vector<type>::reverse_iterator rbegin() noexcept { return member.rbegin(); } \
+	OUDJAT_API OUDJAT_GETTER std::vector<type>::reverse_iterator rend() noexcept { return member.rend(); } \
+	OUDJAT_API OUDJAT_GETTER std::vector<type>::const_reverse_iterator crbegin() const noexcept { return member.crbegin(); } \
+	OUDJAT_API OUDJAT_GETTER std::vector<type>::const_reverse_iterator crend() const noexcept { return member.crend(); }

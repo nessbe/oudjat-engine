@@ -50,6 +50,12 @@ project "sandbox"
 		"{COPY} " .. target_dir .. output_dir .. "oudjat/oudjat.dll %{cfg.targetdir}"
 	}
 
+	filter "action:vs*"
+		debugargs {
+			"--configuration",
+			"%{cfg.buildcfg}",
+		}
+
 	filter "configurations:Debug"
 		symbols "On"
 		optimize "Off"

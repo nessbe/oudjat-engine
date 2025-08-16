@@ -33,7 +33,7 @@ namespace oudjat
 		shutdown();
 	}
 
-	application::exit_code_t application::run()
+	application::exit_code_t application::run(command_line arguments)
 	{
 		return static_cast<application::exit_code_t>(0);
 	}

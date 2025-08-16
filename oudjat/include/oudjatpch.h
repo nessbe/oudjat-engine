@@ -21,6 +21,8 @@
 
 #include <string>
 #include <memory>
+#include <vector>
+#include <optional>
 
 #include "oudjat/export.h"
 #include "oudjat/utils.h"

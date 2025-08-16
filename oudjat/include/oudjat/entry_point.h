@@ -26,7 +26,9 @@ extern oudjat::application* oudjat::create_application();
 int main(int argc, char** argv)
 {
 	oudjat::application* application = oudjat::create_application();
-	oudjat::application::exit_code_t exit_code = application->run();
+	oudjat::command_line arguments(argc, argv);
+
+	oudjat::application::exit_code_t exit_code = application->run(arguments);
 	delete application;
 
 	return static_cast<int>(exit_code);

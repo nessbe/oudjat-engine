@@ -1,4 +1,4 @@
-// File:        application.h
+// File:        command_line.h
 // Project:     oudjat-engine
 // Repository:  https://github.com/nessbe/oudjat-engine
 //
@@ -19,35 +19,36 @@
 
 #pragma once
 
+#include <string>
+#include <vector>
+#include <optional>
+
 #include "oudjat/export.h"
-
-#include "oudjat/window.h"
-#include "oudjat/memory.h"
-
-#include "oudjat/command_line.h"
+#include "oudjat/utils.h"
 
 namespace oudjat
 {
-	class application
+	class command_line
 	{
 	public:
-		using exit_code_t = int;
+		using index_t = std::size_t;
 
 	public:
-		OUDJAT_API application();
-		OUDJAT_API virtual ~application();
+		OUDJAT_API command_line(int argc, char** argv);
+		OUDJAT_API ~command_line() noexcept = default;
 
-		OUDJAT_API virtual exit_code_t run(command_line arguments);
+		OUDJAT_API OUDJAT_GETTER index_t size() const noexcept;
 
-		OUDJAT_API OUDJAT_GETTER window& get_window() const noexcept;
+		OUDJAT_API OUDJAT_GETTER const std::string& get_program_name() const noexcept;
 
-	protected:
-		scope<window> window_;
+		OUDJAT_API OUDJAT_GETTER bool has_argument(index_t index) const noexcept;
+		OUDJAT_API OUDJAT_GETTER std::optional<std::string> get_argument(index_t index) const;
+
+		ITERATOR_WRAPPER(std::string, arguments_);
 
 	private:
-		OUDJAT_API virtual void initialize() { }
-		OUDJAT_API virtual void shutdown() { }
+		std::string program_name_;
+		index_t argument_count_;
+		std::vector<std::string> arguments_;
 	};
-
-	application* create_application();
 }
