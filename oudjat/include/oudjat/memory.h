@@ -1,4 +1,4 @@
-// File:        oudjatpch.h
+// File:        memory.h
 // Project:     oudjat-engine
 // Repository:  https://github.com/nessbe/oudjat-engine
 //
@@ -19,10 +19,5 @@
 
 #pragma once
 
-#include <string>
-#include <memory>
-
-#include "oudjat/export.h"
-#include "oudjat/utils.h"
-
-#include "oudjat/memory.h"
+#include "oudjat/memory/reference.h"
+#include "oudjat/memory/scope.h"

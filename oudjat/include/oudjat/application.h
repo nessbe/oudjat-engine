@@ -21,6 +21,9 @@
 
 #include "oudjat/export.h"
 
+#include "oudjat/window.h"
+#include "oudjat/memory.h"
+
 namespace oudjat
 {
 	class application
@@ -34,9 +37,13 @@ namespace oudjat
 
 		OUDJAT_API virtual exit_code_t run();
 
+		OUDJAT_API OUDJAT_GETTER window& get_window() const noexcept;
+
 	private:
 		OUDJAT_API virtual void initialize() { }
 		OUDJAT_API virtual void shutdown() { }
+
+		scope<window> window;
 	};
 
 	application* create_application();

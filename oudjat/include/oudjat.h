@@ -24,3 +24,5 @@
 #include "oudjat/application.h"
 
 #include "oudjat/window.h"
+
+#include "oudjat/memory.h"
