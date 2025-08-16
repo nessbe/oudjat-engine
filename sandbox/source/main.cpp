@@ -34,14 +34,22 @@ public:
 		shutdown();
 	}
 
-	virtual oudjat::application::exit_code_t run() override
+	virtual oudjat::application::exit_code_t run(oudjat::command_line arguments) override
 	{
 		std::cout << "Running Sandbox application..." << std::endl;
+		std::cout << "Running " << arguments.get_program_name() << " with arguments: ";
+
+		for (const std::string& argument : arguments)
+		{
+			std::cout << argument << ' ';
+		}
+		std::cout << std::endl;
 
 		std::cout << "Press the enter key to exit." << std::endl;
 		std::cin.get();
 
 		std::cout << "Exiting Sandbox application..." << std::endl;
+
 		return static_cast<oudjat::application::exit_code_t>(0);
 	}
 

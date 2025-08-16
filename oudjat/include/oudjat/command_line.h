@@ -1,4 +1,4 @@
-// File:        oudjatpch.h
+// File:        command_line.h
 // Project:     oudjat-engine
 // Repository:  https://github.com/nessbe/oudjat-engine
 //
@@ -20,11 +20,35 @@
 #pragma once
 
 #include <string>
-#include <memory>
 #include <vector>
 #include <optional>
 
 #include "oudjat/export.h"
 #include "oudjat/utils.h"
 
-#include "oudjat/memory.h"
+namespace oudjat
+{
+	class command_line
+	{
+	public:
+		using index_t = std::size_t;
+
+	public:
+		OUDJAT_API command_line(int p_argc, char* p_argv[]);
+		OUDJAT_API ~command_line() noexcept = default;
+
+		OUDJAT_API OUDJAT_GETTER index_t size() const noexcept;
+
+		OUDJAT_API OUDJAT_GETTER const std::string& get_program_name() const noexcept;
+
+		OUDJAT_API OUDJAT_GETTER bool has_argument(index_t index) const noexcept;
+		OUDJAT_API OUDJAT_GETTER std::optional<std::string> get_argument(index_t index) const;
+
+		ITERATOR_WRAPPER(std::string, arguments);
+
+	private:
+		std::string program_name;
+		index_t argument_count;
+		std::vector<std::string> arguments;
+	};
+}
