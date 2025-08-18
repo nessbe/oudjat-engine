@@ -1,4 +1,4 @@
-// File:        oudjat.h
+// File:        logger.h
 // Project:     oudjat-engine
 // Repository:  https://github.com/nessbe/oudjat-engine
 //
@@ -19,13 +19,29 @@
 
 #pragma once
 
-#include "oudjat/core/application.h"
-#include "oudjat/core/command_line.h"
-#include "oudjat/core/entry_point.h"
-#include "oudjat/core/window.h"
-#include "oudjat/logging/logger.h"
-#include "oudjat/memory.h"
+#include <iostream>
+#include <ostream>
+#include <string>
 
-#ifdef _WIN32
-	#include "platforms/windows/windows_window.h"
-#endif
+#include "oudjat/export.h"
+
+namespace oudjat
+{
+	namespace logging
+	{
+		class logger
+		{
+		public:
+			OUDJAT_API logger() = default;
+			OUDJAT_API ~logger() = default;
+
+			OUDJAT_API void log(const std::string& message);
+
+		private:
+			std::ostream& out_ = std::cout;
+
+		private:
+			OUDJAT_API void log_raw(const std::string& message);
+		};
+	}
+}

@@ -20,8 +20,10 @@
 #pragma once
 
 #include <iostream>
+#include <istream>
 #include <memory>
 #include <optional>
+#include <ostream>
 #include <string>
 #include <vector>
 

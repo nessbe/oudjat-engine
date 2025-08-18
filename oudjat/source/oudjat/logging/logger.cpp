@@ -1,4 +1,4 @@
-// File:        oudjat.h
+// File:        logger.cpp
 // Project:     oudjat-engine
 // Repository:  https://github.com/nessbe/oudjat-engine
 //
@@ -17,15 +17,22 @@
 //
 // For more details, see the LICENSE file at the root of the project.
 
-#pragma once
+#include "oudjatpch.h"
 
-#include "oudjat/core/application.h"
-#include "oudjat/core/command_line.h"
-#include "oudjat/core/entry_point.h"
-#include "oudjat/core/window.h"
 #include "oudjat/logging/logger.h"
-#include "oudjat/memory.h"
 
-#ifdef _WIN32
-	#include "platforms/windows/windows_window.h"
-#endif
+namespace oudjat
+{
+	namespace logging
+	{
+		void logger::log(const std::string& message)
+		{
+			log_raw(message);
+		}
+
+		void logger::log_raw(const std::string& message)
+		{
+			out_ << message << std::endl;
+		}
+	}
+}
