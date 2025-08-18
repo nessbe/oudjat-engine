@@ -27,3 +27,7 @@
 #include "oudjat/command_line.h"
 
 #include "oudjat/window.h"
+
+#ifdef _WIN32
+	#include "platforms/windows/windows_window.h"
+#endif

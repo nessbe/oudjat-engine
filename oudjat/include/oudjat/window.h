@@ -24,6 +24,8 @@
 #include "oudjat/export.h"
 #include "oudjat/utils.h"
 
+#include "oudjat/exit_code.h"
+
 namespace oudjat
 {
 	class window
@@ -36,7 +38,7 @@ namespace oudjat
 		OUDJAT_API virtual ~window() { }
 
 		OUDJAT_API virtual void open() = 0;
-		OUDJAT_API virtual bool update() = 0;
+		OUDJAT_API virtual std::optional<exit_code> update() = 0;
 		OUDJAT_API virtual void close() = 0;
 
 		OUDJAT_API virtual void show();

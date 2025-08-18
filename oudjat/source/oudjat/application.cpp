@@ -33,13 +33,43 @@ namespace oudjat
 		shutdown();
 	}
 
-	application::exit_code_t application::run(command_line arguments)
+	exit_code application::run(command_line arguments)
 	{
-		return static_cast<application::exit_code_t>(0);
+		return exit_code::undefined;
 	}
 
 	window& application::get_window() const noexcept
 	{
 		return *window_;
+	}
+
+	bool application::is_running() const noexcept
+	{
+		return is_running_;
+	}
+
+	bool application::post_exit_code(exit_code exit_code) noexcept
+	{
+		if (!exit_code_.has_value())
+		{
+			exit_code_ = exit_code;
+			is_running_ = false;
+			return true;
+		}
+		return false;
+	}
+
+	bool application::has_exit_code() const noexcept
+	{
+		return exit_code_.has_value();
+	}
+
+	exit_code application::get_exit_code() const
+	{
+		if (has_exit_code())
+		{
+			return exit_code_.value();
+		}
+		return exit_code::undefined;
 	}
 }

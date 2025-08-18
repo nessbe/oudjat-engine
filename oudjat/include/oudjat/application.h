@@ -19,9 +19,13 @@
 
 #pragma once
 
+#include <optional>
+
 #include "oudjat/export.h"
 
+#include "oudjat/exit_code.h"
 #include "oudjat/window.h"
+
 #include "oudjat/memory.h"
 
 #include "oudjat/command_line.h"
@@ -31,18 +35,26 @@ namespace oudjat
 	class application
 	{
 	public:
-		using exit_code_t = int;
-
-	public:
 		OUDJAT_API application();
 		OUDJAT_API virtual ~application();
 
-		OUDJAT_API virtual exit_code_t run(command_line arguments);
+		OUDJAT_API virtual exit_code run(command_line arguments);
 
 		OUDJAT_API OUDJAT_GETTER window& get_window() const noexcept;
+		OUDJAT_API OUDJAT_GETTER bool is_running() const noexcept;
+
+		OUDJAT_API bool post_exit_code(exit_code exit_code) noexcept;
 
 	protected:
 		scope<window> window_;
+
+	protected:
+		OUDJAT_API OUDJAT_GETTER bool has_exit_code() const noexcept;
+		OUDJAT_API OUDJAT_GETTER exit_code get_exit_code() const;
+
+	private:
+		bool is_running_ = true;
+		std::optional<exit_code> exit_code_ = std::nullopt;
 
 	private:
 		OUDJAT_API virtual void initialize() { }

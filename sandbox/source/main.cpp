@@ -34,7 +34,7 @@ public:
 		shutdown();
 	}
 
-	virtual oudjat::application::exit_code_t run(oudjat::command_line arguments) override
+	virtual oudjat::exit_code run(oudjat::command_line arguments) override
 	{
 		std::cout << "Running Sandbox application..." << std::endl;
 		std::cout << "Running " << arguments.get_program_name() << " with arguments: ";
@@ -45,12 +45,57 @@ public:
 		}
 		std::cout << std::endl;
 
-		std::cout << "Press the enter key to exit." << std::endl;
-		std::cin.get();
+		window_ = oudjat::make_scoped<oudjat::windows_window>(360, 180, "My awesome unique window");
+		window_->open();
+
+		const std::size_t WINDOW_COUNT = 0;
+		std::vector<oudjat::windows_window*> windows;
+
+		for (std::size_t i = 0; i < WINDOW_COUNT; i++)
+		{
+			const std::string window_name = "My awesome window " + std::to_string(i);
+			oudjat::windows_window* window = new oudjat::windows_window(360, 180, window_name);
+			windows.push_back(window);
+			window->open();
+		}
+
+		while (is_running())
+		{
+			{
+				std::optional<oudjat::exit_code> exit_code = window_->update();
+
+				if (exit_code.has_value())
+				{
+					post_exit_code(exit_code.value());
+				}
+			}
+
+			for (oudjat::windows_window* window : windows)
+			{
+				std::optional<oudjat::exit_code> exit_code = window->update();
+				if (exit_code.has_value())
+				{
+					post_exit_code(exit_code.value());
+				}
+			}
+		}
+
+		window_->close();
+
+		for (oudjat::windows_window* window : windows)
+		{
+			window->close();
+			delete window;
+		}
 
 		std::cout << "Exiting Sandbox application..." << std::endl;
 
-		return static_cast<oudjat::application::exit_code_t>(0);
+		if (!has_exit_code())
+		{
+			post_exit_code(oudjat::exit_code::success);
+		}
+
+		return get_exit_code();
 	}
 
 	virtual void initialize() override

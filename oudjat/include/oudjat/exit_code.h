@@ -1,4 +1,4 @@
-// File:        application.h
+// File:        exit_code.h
 // Project:     oudjat-engine
 // Repository:  https://github.com/nessbe/oudjat-engine
 //
@@ -19,17 +19,12 @@
 
 #pragma once
 
-#include "oudjat/application.h"
-
-extern oudjat::application* oudjat::create_application();
-
-int main(int argc, char** argv)
+namespace oudjat
 {
-	oudjat::application* application = oudjat::create_application();
-	oudjat::command_line arguments(argc, argv);
-
-	oudjat::exit_code exit_code = application->run(arguments);
-	delete application;
-
-	return static_cast<int>(exit_code);
+	enum class exit_code
+	{
+		undefined = -1,
+		success = 0,
+		failure = 1,
+	};
 }
