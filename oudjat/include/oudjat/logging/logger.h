@@ -24,6 +24,7 @@
 #include <string>
 
 #include "oudjat/export.h"
+#include "oudjat/logging/log_level.h"
 
 namespace oudjat
 {
@@ -32,15 +33,25 @@ namespace oudjat
 		class logger
 		{
 		public:
-			OUDJAT_API logger() = default;
+			OUDJAT_API logger();
+			OUDJAT_API logger(log_level level);
+
 			OUDJAT_API ~logger() = default;
 
-			OUDJAT_API void log(const std::string& message);
+			OUDJAT_API OUDJAT_GETTER log_level get_level() const noexcept;
+			OUDJAT_API OUDJAT_SETTER void set_level(log_level level) noexcept;
+
+			OUDJAT_API OUDJAT_GETTER bool is_level_valid(log_level level) const noexcept;
+
+			OUDJAT_API void log(const std::string& message, log_level level);
 
 		private:
 			std::ostream& out_ = std::cout;
+			log_level min_level_;
 
 		private:
+			OUDJAT_API std::string format_message(const std::string& message, log_level level) const;
+
 			OUDJAT_API void log_raw(const std::string& message);
 		};
 	}

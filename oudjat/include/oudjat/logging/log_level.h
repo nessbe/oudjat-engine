@@ -1,4 +1,4 @@
-// File:        oudjat.h
+// File:        log_level.h
 // Project:     oudjat-engine
 // Repository:  https://github.com/nessbe/oudjat-engine
 //
@@ -19,16 +19,47 @@
 
 #pragma once
 
-#include "oudjat/core/application.h"
-#include "oudjat/core/command_line.h"
-#include "oudjat/core/entry_point.h"
-#include "oudjat/core/window.h"
+#include <string>
 
-#include "oudjat/logging/log_level.h"
-#include "oudjat/logging/logger.h"
+namespace oudjat
+{
+	namespace logging
+	{
+		enum class log_level
+		{
+			debug = 0,
+			trace = 1,
+			info = 2,
+			warning = 3,
+			error = 4,
+			critical = 5,
+		};
 
-#include "oudjat/memory.h"
+		std::string to_string(log_level level)
+		{
+			switch (level)
+			{
+			case log_level::debug:
+				return "DEBUG";
 
-#ifdef _WIN32
-	#include "platforms/windows/windows_window.h"
-#endif
+			case log_level::trace:
+				return "TRACE";
+
+			case log_level::info:
+				return "INFO";
+
+			case log_level::warning:
+				return "WARNING";
+
+			case log_level::error:
+				return "ERROR";
+
+			case log_level::critical:
+				return "CRITICAL";
+
+			default:
+				return "UNKNOWN";
+			}
+		}
+	}
+}

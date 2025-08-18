@@ -21,13 +21,53 @@
 
 #include "oudjat/logging/logger.h"
 
+#include <sstream>
+
 namespace oudjat
 {
 	namespace logging
 	{
-		void logger::log(const std::string& message)
+		logger::logger() : min_level_(log_level::debug)
 		{
-			log_raw(message);
+		}
+
+		logger::logger(log_level level) : min_level_(level)
+		{
+		}
+
+		log_level logger::get_level() const noexcept
+		{
+			return min_level_;
+		}
+
+		void logger::set_level(log_level level) noexcept
+		{
+			min_level_ = level;
+		}
+
+		bool logger::is_level_valid(log_level level) const noexcept
+		{
+			return level >= min_level_;
+		}
+
+		void logger::log(const std::string& message, log_level level)
+		{
+			if (!is_level_valid(level))
+			{
+				return;
+			}
+
+			std::string formatted_message = format_message(message, level);
+
+			log_raw(formatted_message);
+		}
+
+		std::string logger::format_message(const std::string& message, log_level level) const
+		{
+			std::ostringstream oss;
+			oss << '[' << to_string(level) << "] ";
+			oss << message;
+			return oss.str();
 		}
 
 		void logger::log_raw(const std::string& message)
