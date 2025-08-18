@@ -18,12 +18,13 @@
 // For more details, see the LICENSE file at the root of the project.
 
 #include "oudjatpch.h"
+
 #include "oudjat/core/window.h"
 
 namespace oudjat
 {
-	window::window(window::dimension_t width, window::dimension_t height, const std::string& title)
-		: width_(width), height_(height), title_(title), is_vsync_(false)
+	window::window(window::dimension_t width, window::dimension_t height, const std::string& title) :
+		width_(width), height_(height), title_(title), is_vsync_(false)
 	{
 	}
 

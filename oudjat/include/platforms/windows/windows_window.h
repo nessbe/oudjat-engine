@@ -19,19 +19,18 @@
 
 #pragma once
 
-#include <string>
 #include <optional>
+#include <string>
 
+#include "oudjat/attributes.h"
+#include "oudjat/core/exit_code.h"
+#include "oudjat/core/window.h"
 #include "oudjat/export.h"
 #include "oudjat/utils.h"
-#include "oudjat/attributes.h"
-
-#include "oudjat/core/window.h"
-#include "oudjat/core/exit_code.h"
 
 #ifdef _WIN32
 
-#include <Windows.h>
+	#include <Windows.h>
 
 namespace oudjat
 {
@@ -64,7 +63,8 @@ namespace oudjat
 		HINSTANCE instance_handle_;
 
 	private:
-		OUDJAT_API static LRESULT CALLBACK window_procedure(HWND window_handle, UINT message, WPARAM wide_parameter, LPARAM long_parameter);
+		OUDJAT_API static LRESULT CALLBACK window_procedure(HWND window_handle, UINT message, WPARAM wide_parameter,
+															LPARAM long_parameter);
 
 		OUDJAT_API std::wstring get_wide_title() const;
 

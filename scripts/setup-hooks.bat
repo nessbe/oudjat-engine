@@ -1,4 +1,4 @@
-:: File:        setup.bat
+:: File:        setup-hooks.bat
 :: Project:     oudjat-engine
 :: Repository:  https://github.com/nessbe/oudjat-engine
 ::
@@ -17,13 +17,4 @@
 ::
 :: For more details, see the LICENSE file at the root of the project.
 
-@echo off
-
-echo Setting up Git hooks...
-call setup-hooks.bat
-echo Done.
-
-echo Generating project files using Premake...
-call generate-projects.bat
-
-pause
+git config global.hooksPath .githooks

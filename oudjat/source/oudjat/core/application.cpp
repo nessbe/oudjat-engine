@@ -18,12 +18,12 @@
 // For more details, see the LICENSE file at the root of the project.
 
 #include "oudjatpch.h"
+
 #include "oudjat/core/application.h"
 
 namespace oudjat
 {
-	application::application()
-		: window_(nullptr)
+	application::application() : window_(nullptr)
 	{
 		initialize();
 	}

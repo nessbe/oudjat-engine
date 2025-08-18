@@ -23,11 +23,9 @@
 
 namespace oudjat
 {
-	template<typename T>
-	using scope = std::unique_ptr<T>;
+	template <typename T> using scope = std::unique_ptr<T>;
 
-	template<typename T, typename... VarArgs>
-	scope<T> make_scoped(VarArgs&&... arguments)
+	template <typename T, typename... VarArgs> scope<T> make_scoped(VarArgs&&... arguments)
 	{
 		return std::make_unique<T>(std::forward<VarArgs>(arguments)...);
 	}

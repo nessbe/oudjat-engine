@@ -1,4 +1,4 @@
-:: File:        setup.bat
+:: File:        pre-commit.bat
 :: Project:     oudjat-engine
 :: Repository:  https://github.com/nessbe/oudjat-engine
 ::
@@ -19,11 +19,14 @@
 
 @echo off
 
-echo Setting up Git hooks...
-call setup-hooks.bat
-echo Done.
+:: Pre-commit hook to format C++ files with clang-format before commit
 
-echo Generating project files using Premake...
-call generate-projects.bat
+REM Get all staged .cpp and .h files
+for /f "delims=" %%f in ('git diff --cached --name-only --diff-filter=ACM ^| findstr /r "\.cpp$ \.h$"') do (
+    echo Formatting %%f...
+    clang-format -i "%%f"
+    git add "%%f"
+)
 
-pause
+:: Exit successfully
+exit 0

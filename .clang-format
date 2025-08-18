@@ -1,0 +1,88 @@
+# File:        .clang-format
+# Project:     oudjat-engine
+# Repository:  https://github.com/nessbe/oudjat-engine
+#
+# Copyright (c) 2025 nessbe
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at:
+#
+#     https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+# For more details, see the LICENSE file at the root of the project.
+
+BasedOnStyle: Microsoft
+Language: Cpp
+
+### End of file ###
+InsertNewlineAtEOF: true
+
+### Indentation and Tabs ###
+UseTab: Always
+TabWidth: 4
+IndentWidth: 4
+ContinuationIndentWidth: 4
+
+### Pointer and Reference Alignment ###
+PointerAlignment: Left
+ReferenceAlignment: Left
+
+### Spaces ###
+SpaceBeforeParens: ControlStatements
+SpaceAfterCStyleCast: true
+SpaceInEmptyParentheses: false
+
+### Functions and Lambdas ###
+AlignAfterOpenBracket: Align
+AllowShortBlocksOnASingleLine: Never
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortFunctionsOnASingleLine: Empty
+BreakBeforeBraces: Allman
+BinPackArguments: false
+AllowAllArgumentsOnNextLine: false
+
+### Constructors ###
+BreakConstructorInitializers: AfterColon
+ConstructorInitializerIndentWidth: 4
+ConstructorInitializerAllOnOneLineOrOnePerLine: false
+AllowAllConstructorInitializersOnNextLine: true
+
+### Classes and Structures ###
+AccessModifierOffset: -4
+IndentAccessModifiers: false
+
+### Namespaces ###
+NamespaceIndentation: All
+
+### Alignments ###
+AlignConsecutiveAssignments: false
+AlignConsecutiveDeclarations: false
+AlignEscapedNewlines: Right
+AlignOperands: true
+
+### Line Breaking and Wrapping ###
+ColumnLimit: 120
+
+### Includes ###
+SortIncludes: true
+IncludeBlocks: Preserve
+IncludeCategories:
+  - Regex: '^.*oudjatpch\.h$'
+    Priority: 1
+  - Regex: '^<.*>'
+    Priority: 2
+  - Regex: '^".*"'
+    Priority: 3
+
+### Comments ###
+CommentPragmas: false
+FixNamespaceComments: false
+
+### Preprocessor ###
+IndentPPDirectives: BeforeHash

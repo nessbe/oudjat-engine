@@ -21,13 +21,12 @@
 
 #include <optional>
 
-#include "oudjat/export.h"
 #include "oudjat/attributes.h"
-#include "oudjat/memory.h"
-
+#include "oudjat/core/command_line.h"
 #include "oudjat/core/exit_code.h"
 #include "oudjat/core/window.h"
-#include "oudjat/core/command_line.h"
+#include "oudjat/export.h"
+#include "oudjat/memory.h"
 
 namespace oudjat
 {
@@ -56,8 +55,8 @@ namespace oudjat
 		std::optional<exit_code> exit_code_ = std::nullopt;
 
 	private:
-		OUDJAT_API virtual void initialize() { }
-		OUDJAT_API virtual void shutdown() { }
+		OUDJAT_API virtual void initialize() {}
+		OUDJAT_API virtual void shutdown() {}
 	};
 
 	application* create_application();

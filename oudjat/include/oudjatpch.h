@@ -20,14 +20,12 @@
 #pragma once
 
 #include <iostream>
-
-#include <string>
 #include <memory>
-#include <vector>
 #include <optional>
+#include <string>
+#include <vector>
 
-#include "oudjat/export.h"
-#include "oudjat/utils.h"
 #include "oudjat/attributes.h"
-
+#include "oudjat/export.h"
 #include "oudjat/memory.h"
+#include "oudjat/utils.h"

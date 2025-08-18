@@ -21,10 +21,9 @@
 
 #include <string>
 
-#include "oudjat/export.h"
 #include "oudjat/attributes.h"
-
 #include "oudjat/core/exit_code.h"
+#include "oudjat/export.h"
 
 namespace oudjat
 {
@@ -35,7 +34,7 @@ namespace oudjat
 
 	public:
 		OUDJAT_API window(dimension_t width, dimension_t height, const std::string& title);
-		OUDJAT_API virtual ~window() { }
+		OUDJAT_API virtual ~window() {}
 
 		OUDJAT_API virtual void open() = 0;
 		OUDJAT_API virtual std::optional<exit_code> update() = 0;

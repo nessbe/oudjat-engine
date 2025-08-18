@@ -19,14 +19,11 @@
 
 #pragma once
 
-#include "oudjat/core/entry_point.h"
-
-#include "oudjat/memory.h"
-
 #include "oudjat/core/application.h"
 #include "oudjat/core/command_line.h"
-
+#include "oudjat/core/entry_point.h"
 #include "oudjat/core/window.h"
+#include "oudjat/memory.h"
 
 #ifdef _WIN32
 	#include "platforms/windows/windows_window.h"

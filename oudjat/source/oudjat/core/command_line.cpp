@@ -18,6 +18,7 @@
 // For more details, see the LICENSE file at the root of the project.
 
 #include "oudjatpch.h"
+
 #include "oudjat/core/command_line.h"
 
 namespace oudjat

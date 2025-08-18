@@ -19,13 +19,13 @@
 
 #pragma once
 
+#include <optional>
 #include <string>
 #include <vector>
-#include <optional>
 
+#include "oudjat/attributes.h"
 #include "oudjat/export.h"
 #include "oudjat/utils.h"
-#include "oudjat/attributes.h"
 
 namespace oudjat
 {

@@ -23,11 +23,9 @@
 
 namespace oudjat
 {
-	template<typename T>
-	using reference = std::shared_ptr<T>;
+	template <typename T> using reference = std::shared_ptr<T>;
 
-	template<typename T, typename... VarArgs>
-	reference<T> make_referenced(VarArgs&&... arguments)
+	template <typename T, typename... VarArgs> reference<T> make_referenced(VarArgs&&... arguments)
 	{
 		return std::make_shared<T>(std::forward<VarArgs>(arguments)...);
 	}

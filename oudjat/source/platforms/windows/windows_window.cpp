@@ -18,13 +18,14 @@
 // For more details, see the LICENSE file at the root of the project.
 
 #include "oudjatpch.h"
+
 #include "platforms/windows/windows_window.h"
 
 #include <iostream>
 
 #ifdef _WIN32
 
-#include <conio.h>
+	#include <conio.h>
 
 namespace oudjat
 {
@@ -56,26 +57,24 @@ namespace oudjat
 
 		DWORD style = WS_OVERLAPPEDWINDOW;
 
-		RECT rect = { 0, 0, static_cast<LONG>(width_), static_cast<LONG>(height_) };
+		RECT rect = {0, 0, static_cast<LONG>(width_), static_cast<LONG>(height_)};
 		AdjustWindowRect(&rect, style, FALSE);
 
 		std::wstring window_class_name = CLASS_NAME;
 		std::wstring window_title = get_wide_title();
 
-		window_handle_ = CreateWindowEx(
-			0,
-			window_class_name.c_str(),
-			window_title.c_str(),
-			style,
-			CW_USEDEFAULT,
-			CW_USEDEFAULT,
-			rect.right - rect.left,
-			rect.bottom - rect.top,
-			NULL,
-			NULL,
-			instance_handle_,
-			this
-		);
+		window_handle_ = CreateWindowEx(0,
+										window_class_name.c_str(),
+										window_title.c_str(),
+										style,
+										CW_USEDEFAULT,
+										CW_USEDEFAULT,
+										rect.right - rect.left,
+										rect.bottom - rect.top,
+										NULL,
+										NULL,
+										instance_handle_,
+										this);
 
 		show();
 		UpdateWindow(window_handle_);
@@ -83,7 +82,7 @@ namespace oudjat
 
 	std::optional<exit_code> windows_window::update()
 	{
-		MSG message = { };
+		MSG message = {};
 
 		while (PeekMessage(&message, NULL, 0, 0, PM_REMOVE))
 		{
@@ -138,7 +137,8 @@ namespace oudjat
 
 	std::size_t windows_window::window_count_ = 0;
 
-	LRESULT CALLBACK windows_window::window_procedure(HWND window_handle, UINT message, WPARAM wide_parameter, LPARAM long_parameter)
+	LRESULT CALLBACK windows_window::window_procedure(HWND window_handle, UINT message, WPARAM wide_parameter,
+													  LPARAM long_parameter)
 	{
 		windows_window* window = nullptr;
 
@@ -196,7 +196,7 @@ namespace oudjat
 			return std::nullopt;
 		}
 
-		WNDCLASS window_class = { };
+		WNDCLASS window_class = {};
 		window_class.lpszClassName = class_name.c_str();
 		window_class.hInstance = instance_handle_;
 		window_class.hCursor = LoadCursor(NULL, IDC_ARROW);
