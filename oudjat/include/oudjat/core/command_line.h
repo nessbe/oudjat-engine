@@ -25,6 +25,7 @@
 
 #include "oudjat/export.h"
 #include "oudjat/utils.h"
+#include "oudjat/attributes.h"
 
 namespace oudjat
 {

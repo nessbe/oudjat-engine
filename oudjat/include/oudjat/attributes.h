@@ -1,4 +1,4 @@
-// File:        application.h
+// File:		attributes.h
 // Project:     oudjat-engine
 // Repository:  https://github.com/nessbe/oudjat-engine
 //
@@ -19,17 +19,11 @@
 
 #pragma once
 
-#include "oudjat/application.h"
+#define OUDJAT_INLINE \
+	inline
 
-extern oudjat::application* oudjat::create_application();
+#define OUDJAT_GETTER \
+	_NODISCARD OUDJAT_INLINE
 
-int main(int argc, char** argv)
-{
-	oudjat::application* application = oudjat::create_application();
-	oudjat::command_line arguments(argc, argv);
-
-	oudjat::exit_code exit_code = application->run(arguments);
-	delete application;
-
-	return static_cast<int>(exit_code);
-}
+#define OUDJAT_SETTER \
+	OUDJAT_INLINE

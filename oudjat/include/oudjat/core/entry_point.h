@@ -1,4 +1,4 @@
-// File:        oudjat.h
+// File:        application.h
 // Project:     oudjat-engine
 // Repository:  https://github.com/nessbe/oudjat-engine
 //
@@ -19,15 +19,17 @@
 
 #pragma once
 
-#include "oudjat/core/entry_point.h"
-
-#include "oudjat/memory.h"
-
 #include "oudjat/core/application.h"
-#include "oudjat/core/command_line.h"
 
-#include "oudjat/core/window.h"
+extern oudjat::application* oudjat::create_application();
 
-#ifdef _WIN32
-	#include "platforms/windows/windows_window.h"
-#endif
+int main(int argc, char** argv)
+{
+	oudjat::application* application = oudjat::create_application();
+	oudjat::command_line arguments(argc, argv);
+
+	oudjat::exit_code exit_code = application->run(arguments);
+	delete application;
+
+	return static_cast<int>(exit_code);
+}

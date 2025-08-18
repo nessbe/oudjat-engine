@@ -24,9 +24,10 @@
 
 #include "oudjat/export.h"
 #include "oudjat/utils.h"
+#include "oudjat/attributes.h"
 
-#include "oudjat/window.h"
-#include "oudjat/exit_code.h"
+#include "oudjat/core/window.h"
+#include "oudjat/core/exit_code.h"
 
 #ifdef _WIN32
 

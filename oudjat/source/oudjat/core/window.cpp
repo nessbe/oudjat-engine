@@ -18,7 +18,7 @@
 // For more details, see the LICENSE file at the root of the project.
 
 #include "oudjatpch.h"
-#include "oudjat/window.h"
+#include "oudjat/core/window.h"
 
 namespace oudjat
 {

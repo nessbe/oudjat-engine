@@ -22,9 +22,9 @@
 #include <string>
 
 #include "oudjat/export.h"
-#include "oudjat/utils.h"
+#include "oudjat/attributes.h"
 
-#include "oudjat/exit_code.h"
+#include "oudjat/core/exit_code.h"
 
 namespace oudjat
 {
@@ -45,19 +45,19 @@ namespace oudjat
 		OUDJAT_API virtual void hide();
 
 		OUDJAT_API OUDJAT_GETTER virtual bool is_visible() const noexcept;
-		OUDJAT_API virtual void set_visible(bool visible);
+		OUDJAT_API OUDJAT_SETTER virtual void set_visible(bool visible);
 
 		OUDJAT_API OUDJAT_GETTER dimension_t get_width() const noexcept;
-		OUDJAT_API virtual void set_width(dimension_t width);
+		OUDJAT_API OUDJAT_SETTER virtual void set_width(dimension_t width);
 
 		OUDJAT_API OUDJAT_GETTER dimension_t get_height() const noexcept;
-		OUDJAT_API virtual void set_height(dimension_t height);
+		OUDJAT_API OUDJAT_SETTER virtual void set_height(dimension_t height);
 
 		OUDJAT_API OUDJAT_GETTER const std::string& get_title() const noexcept;
-		OUDJAT_API virtual void set_title(const std::string& title);
+		OUDJAT_API OUDJAT_SETTER virtual void set_title(const std::string& title);
 
 		OUDJAT_API OUDJAT_GETTER virtual bool is_vsync() const noexcept;
-		OUDJAT_API virtual void set_vsync(bool enabled) noexcept;
+		OUDJAT_API OUDJAT_SETTER virtual void set_vsync(bool enabled) noexcept;
 
 		OUDJAT_API OUDJAT_GETTER virtual void* get_native_handle() const = 0;
 

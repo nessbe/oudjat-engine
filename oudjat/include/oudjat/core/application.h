@@ -22,13 +22,12 @@
 #include <optional>
 
 #include "oudjat/export.h"
-
-#include "oudjat/exit_code.h"
-#include "oudjat/window.h"
-
+#include "oudjat/attributes.h"
 #include "oudjat/memory.h"
 
-#include "oudjat/command_line.h"
+#include "oudjat/core/exit_code.h"
+#include "oudjat/core/window.h"
+#include "oudjat/core/command_line.h"
 
 namespace oudjat
 {

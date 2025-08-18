@@ -21,8 +21,6 @@
 
 #include "oudjat/export.h"
 
-#define OUDJAT_GETTER [[nodiscard]] inline
-
 #define ITERATOR_WRAPPER(type, member) \
 	OUDJAT_API OUDJAT_GETTER std::vector<type>::iterator begin() noexcept { return member.begin(); } \
 	OUDJAT_API OUDJAT_GETTER std::vector<type>::iterator end() noexcept { return member.end(); } \
