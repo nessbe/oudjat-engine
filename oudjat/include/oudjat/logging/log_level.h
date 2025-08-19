@@ -35,7 +35,7 @@ namespace oudjat
 			critical = 5,
 		};
 
-		std::string to_string(log_level level)
+		inline std::string to_string(log_level level)
 		{
 			switch (level)
 			{

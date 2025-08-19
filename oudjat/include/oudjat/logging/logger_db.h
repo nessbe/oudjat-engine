@@ -1,4 +1,4 @@
-// File:        oudjatpch.h
+// File:        logger_db.h
 // Project:     oudjat-engine
 // Repository:  https://github.com/nessbe/oudjat-engine
 //
@@ -19,17 +19,32 @@
 
 #pragma once
 
-#include <functional>
-#include <iostream>
-#include <istream>
-#include <memory>
 #include <optional>
-#include <ostream>
 #include <string>
 #include <unordered_map>
-#include <vector>
 
-#include "oudjat/attributes.h"
 #include "oudjat/export.h"
+#include "oudjat/logging/logger.h"
 #include "oudjat/memory.h"
-#include "oudjat/utils.h"
+
+namespace oudjat
+{
+	namespace logging
+	{
+		class logger_db
+		{
+		public:
+			OUDJAT_API OUDJAT_GETTER static bool has_logger(const std::string& configuration);
+			OUDJAT_API OUDJAT_GETTER reference<logger> get_logger(const std::string& configuration);
+
+			OUDJAT_API static bool add_logger(reference<logger> logger);
+			OUDJAT_API static bool remove_logger(const std::string& configuration);
+
+			OUDJAT_API static reference<logger> emplace_logger(const std::string& configuration);
+			OUDJAT_API static reference<logger> get_or_emplace_logger(const std::string& configuration);
+
+		private:
+			static std::unordered_map<std::string, reference<logger>> loggers_;
+		};
+	}
+}

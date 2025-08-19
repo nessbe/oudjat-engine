@@ -26,6 +26,7 @@
 
 #include "oudjat/logging/log_level.h"
 #include "oudjat/logging/logger.h"
+#include "oudjat/logging/logger_db.h"
 
 #include "oudjat/memory.h"
 
