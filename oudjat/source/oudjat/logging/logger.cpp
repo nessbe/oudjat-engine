@@ -27,12 +27,18 @@ namespace oudjat
 {
 	namespace logging
 	{
-		logger::logger() : min_level_(log_level::debug)
+		logger::logger(const std::string& configuration) : configuration_(configuration), min_level_(log_level::debug)
 		{
 		}
 
-		logger::logger(log_level level) : min_level_(level)
+		logger::logger(const std::string& configuration, log_level level) :
+			configuration_(configuration), min_level_(level)
 		{
+		}
+
+		const std::string& logger::get_configuration() const noexcept
+		{
+			return configuration_;
 		}
 
 		log_level logger::get_level() const noexcept
@@ -65,6 +71,7 @@ namespace oudjat
 		std::string logger::format_message(const std::string& message, log_level level) const
 		{
 			std::ostringstream oss;
+			oss << '[' << configuration_ << "] ";
 			oss << '[' << to_string(level) << "] ";
 			oss << message;
 			return oss.str();

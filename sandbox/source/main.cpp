@@ -36,7 +36,7 @@ public:
 
 	virtual oudjat::exit_code run(oudjat::command_line arguments) override
 	{
-		oudjat::logging::logger logger;
+		oudjat::logging::logger logger("SANDBOX");
 		logger.log("Hello from a logger!", oudjat::logging::log_level::debug);
 
 		std::cout << "Running Sandbox application..." << std::endl;

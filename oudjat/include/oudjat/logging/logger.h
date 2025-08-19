@@ -33,10 +33,12 @@ namespace oudjat
 		class logger
 		{
 		public:
-			OUDJAT_API logger();
-			OUDJAT_API logger(log_level level);
+			OUDJAT_API logger(const std::string& configuration);
+			OUDJAT_API logger(const std::string& configuration, log_level level);
 
 			OUDJAT_API ~logger() = default;
+
+			OUDJAT_API OUDJAT_GETTER const std::string& get_configuration() const noexcept;
 
 			OUDJAT_API OUDJAT_GETTER log_level get_level() const noexcept;
 			OUDJAT_API OUDJAT_SETTER void set_level(log_level level) noexcept;
@@ -47,6 +49,8 @@ namespace oudjat
 
 		private:
 			std::ostream& out_ = std::cout;
+
+			std::string configuration_;
 			log_level min_level_;
 
 		private:
