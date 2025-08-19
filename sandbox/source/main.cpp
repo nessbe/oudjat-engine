@@ -41,7 +41,7 @@ public:
 
 		oudjat::reference<oudjat::logging::logger> logger =
 			oudjat::logging::logger_db::get_or_emplace_logger(LOGGER_CONFIGURATION);
-		logger->log("Hello from a logger!", oudjat::logging::log_level::debug);
+		logger->log_debug("Hello from a logger!");
 
 		std::cout << "Running Sandbox application..." << std::endl;
 		std::cout << "Running " << arguments.get_program_name() << " with arguments: ";

@@ -47,6 +47,13 @@ namespace oudjat
 
 			OUDJAT_API void log(const std::string& message, log_level level);
 
+			OUDJAT_API OUDJAT_INLINE void log_debug(const std::string& message);
+			OUDJAT_API OUDJAT_INLINE void log_trace(const std::string& message);
+			OUDJAT_API OUDJAT_INLINE void log_info(const std::string& message);
+			OUDJAT_API OUDJAT_INLINE void log_warning(const std::string& message);
+			OUDJAT_API OUDJAT_INLINE void log_error(const std::string& message);
+			OUDJAT_API OUDJAT_INLINE void log_critical(const std::string& message);
+
 		private:
 			std::ostream& out_ = std::cout;
 

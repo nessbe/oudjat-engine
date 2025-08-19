@@ -68,6 +68,36 @@ namespace oudjat
 			log_raw(formatted_message);
 		}
 
+		void logger::log_debug(const std::string& message)
+		{
+			log(message, log_level::debug);
+		}
+
+		void logger::log_trace(const std::string& message)
+		{
+			log(message, log_level::trace);
+		}
+
+		void logger::log_info(const std::string& message)
+		{
+			log(message, log_level::info);
+		}
+
+		void logger::log_warning(const std::string& message)
+		{
+			log(message, log_level::warning);
+		}
+
+		void logger::log_error(const std::string& message)
+		{
+			log(message, log_level::error);
+		}
+
+		void logger::log_critical(const std::string& message)
+		{
+			log(message, log_level::critical);
+		}
+
 		std::string logger::format_message(const std::string& message, log_level level) const
 		{
 			std::ostringstream oss;

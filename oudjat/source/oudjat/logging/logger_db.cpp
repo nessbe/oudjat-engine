@@ -56,8 +56,7 @@ namespace oudjat
 
 		reference<logger> logger_db::emplace_logger(const std::string& configuration)
 		{
-			auto [it, inserted] =
-				loggers_.try_emplace(configuration, std::make_shared<logger>(configuration));
+			auto [it, inserted] = loggers_.try_emplace(configuration, std::make_shared<logger>(configuration));
 			return inserted ? it->second : nullptr;
 		}
 
