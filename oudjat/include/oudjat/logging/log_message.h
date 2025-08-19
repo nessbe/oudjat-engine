@@ -1,4 +1,4 @@
-// File:        oudjat.h
+// File:        log_message.h
 // Project:     oudjat-engine
 // Repository:  https://github.com/nessbe/oudjat-engine
 //
@@ -19,18 +19,19 @@
 
 #pragma once
 
-#include "oudjat/core/application.h"
-#include "oudjat/core/command_line.h"
-#include "oudjat/core/entry_point.h"
-#include "oudjat/core/window.h"
+#include <string>
 
 #include "oudjat/logging/log_level.h"
-#include "oudjat/logging/log_message.h"
-#include "oudjat/logging/logger.h"
-#include "oudjat/logging/logger_db.h"
 
-#include "oudjat/memory.h"
-
-#ifdef _WIN32
-	#include "platforms/windows/windows_window.h"
-#endif
+namespace oudjat
+{
+	namespace logging
+	{
+		struct log_message
+		{
+		public:
+			std::string literal;
+			log_level level;
+		};
+	}
+}

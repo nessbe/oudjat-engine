@@ -56,54 +56,54 @@ namespace oudjat
 			return level >= min_level_;
 		}
 
-		void logger::log(const std::string& message, log_level level)
+		void logger::log(const log_message& message)
 		{
-			if (!is_level_valid(level))
+			if (!is_level_valid(message.level))
 			{
 				return;
 			}
 
-			std::string formatted_message = format_message(message, level);
+			std::string formatted_message = format_message(message);
 
 			log_raw(formatted_message);
 		}
 
 		void logger::log_debug(const std::string& message)
 		{
-			log(message, log_level::debug);
+			log(log_message{message, log_level::debug});
 		}
 
 		void logger::log_trace(const std::string& message)
 		{
-			log(message, log_level::trace);
+			log(log_message{message, log_level::trace});
 		}
 
 		void logger::log_info(const std::string& message)
 		{
-			log(message, log_level::info);
+			log(log_message{message, log_level::info});
 		}
 
 		void logger::log_warning(const std::string& message)
 		{
-			log(message, log_level::warning);
+			log(log_message{message, log_level::warning});
 		}
 
 		void logger::log_error(const std::string& message)
 		{
-			log(message, log_level::error);
+			log(log_message{message, log_level::error});
 		}
 
 		void logger::log_critical(const std::string& message)
 		{
-			log(message, log_level::critical);
+			log(log_message{message, log_level::critical});
 		}
 
-		std::string logger::format_message(const std::string& message, log_level level) const
+		std::string logger::format_message(const log_message& message) const
 		{
 			std::ostringstream oss;
 			oss << '[' << configuration_ << "] ";
-			oss << '[' << to_string(level) << "] ";
-			oss << message;
+			oss << '[' << to_string(message.level) << "] ";
+			oss << message.literal;
 			return oss.str();
 		}
 
