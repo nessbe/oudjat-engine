@@ -23,6 +23,7 @@
 #include <ostream>
 #include <string>
 
+#include "oudjat/attributes.h"
 #include "oudjat/export.h"
 #include "oudjat/logging/log_level.h"
 #include "oudjat/logging/log_message.h"

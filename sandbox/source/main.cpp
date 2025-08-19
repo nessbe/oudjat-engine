@@ -19,6 +19,7 @@
 
 #include <iostream>
 
+#define LOGGING_CONFIGURATION "SANDBOX"
 #include "oudjat.h"
 
 class sandbox_application : public oudjat::application
@@ -36,15 +37,11 @@ public:
 
 	virtual oudjat::exit_code run(oudjat::command_line arguments) override
 	{
-		const std::string& LOGGER_CONFIGURATION = "SANDBOX";
-		oudjat::logging::logger_db::emplace_logger(LOGGER_CONFIGURATION);
-
 		oudjat::reference<oudjat::logging::logger> logger =
-			oudjat::logging::logger_db::get_or_emplace_logger(LOGGER_CONFIGURATION);
-		logger->log_debug("Hello from a logger!");
+			oudjat::logging::logger_db::get_or_emplace_logger(LOGGING_CONFIGURATION);
 
-		std::cout << "Running Sandbox application..." << std::endl;
-		std::cout << "Running " << arguments.get_program_name() << " with arguments: ";
+		LOG_TRACE("Running Sandbox application...");
+		LOG_TRACE("Running " + arguments.get_program_name() + " with arguments:");
 
 		for (const std::string& argument : arguments)
 		{
@@ -95,7 +92,7 @@ public:
 			delete window;
 		}
 
-		std::cout << "Exiting Sandbox application..." << std::endl;
+		LOG_TRACE("Exiting Sandbox application...");
 
 		if (!has_exit_code())
 		{
@@ -107,12 +104,12 @@ public:
 
 	virtual void initialize() override
 	{
-		std::cout << "Initializing Sandbox application..." << std::endl;
+		LOG_TRACE("Initializing Sandbox application...");
 	}
 
 	virtual void shutdown() override
 	{
-		std::cout << "Shutting down Sandbox application..." << std::endl;
+		LOG_TRACE("Shutting down Sandbox application...");
 	}
 };
 

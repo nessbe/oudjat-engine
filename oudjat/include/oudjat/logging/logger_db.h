@@ -23,6 +23,7 @@
 #include <string>
 #include <unordered_map>
 
+#include "oudjat/attributes.h"
 #include "oudjat/export.h"
 #include "oudjat/logging/logger.h"
 #include "oudjat/memory.h"

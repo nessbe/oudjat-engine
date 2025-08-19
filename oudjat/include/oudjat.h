@@ -19,15 +19,12 @@
 
 #pragma once
 
+#include "oudjat/logging/log_macros.h"
+
 #include "oudjat/core/application.h"
 #include "oudjat/core/command_line.h"
 #include "oudjat/core/entry_point.h"
 #include "oudjat/core/window.h"
-
-#include "oudjat/logging/log_level.h"
-#include "oudjat/logging/log_message.h"
-#include "oudjat/logging/logger.h"
-#include "oudjat/logging/logger_db.h"
 
 #include "oudjat/memory.h"
 

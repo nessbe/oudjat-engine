@@ -21,8 +21,6 @@
 
 #include "platforms/windows/windows_window.h"
 
-#include <iostream>
-
 #ifdef _WIN32
 
 	#include <conio.h>
@@ -160,7 +158,7 @@ namespace oudjat
 
 			if (window)
 			{
-				std::cout << "Opening " << window->get_title() << " window..." << std::endl;
+				LOG_INFO("Opening " + window->get_title() + " window...");
 			}
 
 			break;
@@ -170,12 +168,12 @@ namespace oudjat
 
 			if (window)
 			{
-				std::cout << "Closing " << window->get_title() << " window..." << std::endl;
+				LOG_INFO("Closing " + window->get_title() + " window...");
 			}
 
 			if (window_count_ <= 0)
 			{
-				std::cout << "No more windows open, quitting..." << std::endl;
+				LOG_INFO("No more windows open, quitting...");
 				PostQuitMessage(0);
 			}
 			return 0;

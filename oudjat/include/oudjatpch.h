@@ -31,5 +31,6 @@
 
 #include "oudjat/attributes.h"
 #include "oudjat/export.h"
+#include "oudjat/logging/log_macros.h"
 #include "oudjat/memory.h"
 #include "oudjat/utils.h"
