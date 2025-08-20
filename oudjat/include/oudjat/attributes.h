@@ -1,4 +1,4 @@
-// File:		attributes.h
+// File:        attributes.h
 // Project:     oudjat-engine
 // Repository:  https://github.com/nessbe/oudjat-engine
 //

@@ -1,4 +1,4 @@
-// File:        application.h
+// File:        entry_point.h
 // Project:     oudjat-engine
 // Repository:  https://github.com/nessbe/oudjat-engine
 //

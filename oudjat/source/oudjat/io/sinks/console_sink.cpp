@@ -1,4 +1,4 @@
-// File:        console_sink.cp
+// File:        console_sink.cpp
 // Project:     oudjat-engine
 // Repository:  https://github.com/nessbe/oudjat-engine
 //

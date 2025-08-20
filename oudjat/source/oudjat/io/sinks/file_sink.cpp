@@ -1,4 +1,4 @@
-// File:        null_sink.h
+// File:        file_sink.cpp
 // Project:     oudjat-engine
 // Repository:  https://github.com/nessbe/oudjat-engine
 //
