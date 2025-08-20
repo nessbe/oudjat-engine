@@ -32,6 +32,7 @@ namespace oudjat
 		public:
 			std::string literal;
 			log_level level;
+			std::string configuration;
 
 			std::string file_name;
 			int line;

@@ -26,10 +26,13 @@
 
 #include "oudjat/attributes.h"
 #include "oudjat/export.h"
+#include "oudjat/memory.h"
+
 #include "oudjat/io/sinks.h"
+
+#include "oudjat/logging/log_format.h"
 #include "oudjat/logging/log_level.h"
 #include "oudjat/logging/log_message.h"
-#include "oudjat/memory.h"
 
 using namespace oudjat::io;
 
@@ -61,8 +64,8 @@ namespace oudjat
 
 			OUDJAT_API OUDJAT_GETTER bool is_level_valid(log_level level) const noexcept;
 
-			OUDJAT_API const std::string& get_message_format() const noexcept;
-			OUDJAT_API void set_message_format(const std::string& format) noexcept;
+			OUDJAT_API const std::string& get_log_format() const noexcept;
+			OUDJAT_API void set_log_format(const std::string& format) noexcept;
 
 			OUDJAT_API void log(const log_message& message);
 
@@ -82,7 +85,7 @@ namespace oudjat
 			// %C: Configuration
 			// %L: Level
 			// %M: Message
-			std::string message_format_ = "[%C] [%L] %M";
+			log_format log_format_ = log_format("[%C] [%L] %M");
 
 		private:
 			OUDJAT_API std::string format_message(const log_message& message) const;

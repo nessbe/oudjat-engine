@@ -61,14 +61,19 @@ namespace oudjat
 			return level >= min_level_;
 		}
 
-		const std::string& logger::get_message_format() const noexcept
+		const std::string& logger::get_log_format() const noexcept
 		{
-			return message_format_;
+			return log_format_.get_format();
 		}
 
-		void logger::set_message_format(const std::string& format) noexcept
+		void logger::set_log_format(const std::string& format) noexcept
 		{
-			message_format_ = format;
+			log_format_.set_format(format);
+
+			if (log_format_.is_dirty())
+			{
+				log_format_.update();
+			}
 		}
 
 		void logger::log(const log_message& message)
@@ -85,71 +90,38 @@ namespace oudjat
 
 		void logger::log_debug(const std::string& message)
 		{
-			log(log_message{message, log_level::debug});
+			log(log_message{message, log_level::debug, configuration_});
 		}
 
 		void logger::log_trace(const std::string& message)
 		{
-			log(log_message{message, log_level::trace});
+			log(log_message{message, log_level::trace, configuration_});
 		}
 
 		void logger::log_info(const std::string& message)
 		{
-			log(log_message{message, log_level::info});
+			log(log_message{message, log_level::info, configuration_});
 		}
 
 		void logger::log_warning(const std::string& message)
 		{
-			log(log_message{message, log_level::warning});
+			log(log_message{message, log_level::warning, configuration_});
 		}
 
 		void logger::log_error(const std::string& message)
 		{
-			log(log_message{message, log_level::error});
+			log(log_message{message, log_level::error, configuration_});
 		}
 
 		void logger::log_critical(const std::string& message)
 		{
-			log(log_message{message, log_level::critical});
+			log(log_message{message, log_level::critical, configuration_});
 		}
 
 		std::string logger::format_message(const log_message& message) const
 		{
 			std::ostringstream oss;
-			
-			for (std::size_t i = 0; i < message_format_.size(); i++)
-			{
-				char current_char = message_format_[i];
-
-				if (current_char == '%' && i < message_format_.size() - 1)
-				{
-					char next_char = message_format_[++i];
-
-					switch (next_char)
-					{
-					case 'C':
-						oss << configuration_;
-						break;
-
-					case 'L':
-						oss << to_string(message.level);
-						break;
-
-					case 'M':
-						oss << message.literal;
-						break;
-
-					default:
-						oss << current_char;
-						break;
-					}
-				}
-				else
-				{
-					oss << current_char;
-				}
-			}
-
+			log_format_.format(message, oss);
 			return oss.str();
 		}
 

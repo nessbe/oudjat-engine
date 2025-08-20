@@ -29,7 +29,7 @@
 
 #define LOG(message, level)                                                                                            \
 	oudjat::logging::logger_db::get_or_emplace_logger(LOGGING_CONFIGURATION)                                           \
-		->log(oudjat::logging::log_message{message, level, __FILE__, __LINE__, __func__})
+		->log(oudjat::logging::log_message{message, level, LOGGING_CONFIGURATION, __FILE__, __LINE__, __func__})
 
 #define LOG_DEBUG(message) LOG(message, oudjat::logging::log_level::debug)
 #define LOG_TRACE(message) LOG(message, oudjat::logging::log_level::trace)
