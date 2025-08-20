@@ -36,9 +36,9 @@ namespace oudjat
 		OUDJAT_API window(dimension_t width, dimension_t height, const std::string& title);
 		OUDJAT_API virtual ~window() {}
 
-		OUDJAT_API virtual void open() = 0;
-		OUDJAT_API virtual std::optional<exit_code> update() = 0;
-		OUDJAT_API virtual void close() = 0;
+		virtual void open() = 0;
+		virtual std::optional<exit_code> update() = 0;
+		virtual void close() = 0;
 
 		OUDJAT_API virtual void show();
 		OUDJAT_API virtual void hide();
@@ -58,7 +58,7 @@ namespace oudjat
 		OUDJAT_API OUDJAT_GETTER virtual bool is_vsync() const noexcept;
 		OUDJAT_API OUDJAT_SETTER virtual void set_vsync(bool enabled) noexcept;
 
-		OUDJAT_API OUDJAT_GETTER virtual void* get_native_handle() const = 0;
+		OUDJAT_GETTER virtual void* get_native_handle() const = 0;
 
 	protected:
 		dimension_t width_, height_;
