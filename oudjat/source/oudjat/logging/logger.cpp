@@ -36,6 +36,11 @@ namespace oudjat
 		{
 		}
 
+		void logger::push_sink(reference<sink> sink)
+		{
+			sinks_.push_back(sink);
+		}
+
 		const std::string& logger::get_configuration() const noexcept
 		{
 			return configuration_;
@@ -54,6 +59,16 @@ namespace oudjat
 		bool logger::is_level_valid(log_level level) const noexcept
 		{
 			return level >= min_level_;
+		}
+
+		const std::string& logger::get_message_format() const noexcept
+		{
+			return message_format_;
+		}
+
+		void logger::set_message_format(const std::string& format) noexcept
+		{
+			message_format_ = format;
 		}
 
 		void logger::log(const log_message& message)
@@ -98,17 +113,43 @@ namespace oudjat
 			log(log_message{message, log_level::critical});
 		}
 
-		void logger::push_sink(reference<sink> sink)
-		{
-			sinks_.push_back(sink);
-		}
-
 		std::string logger::format_message(const log_message& message) const
 		{
 			std::ostringstream oss;
-			oss << '[' << configuration_ << "] ";
-			oss << '[' << to_string(message.level) << "] ";
-			oss << message.literal;
+			
+			for (std::size_t i = 0; i < message_format_.size(); i++)
+			{
+				char current_char = message_format_[i];
+
+				if (current_char == '%' && i < message_format_.size() - 1)
+				{
+					char next_char = message_format_[++i];
+
+					switch (next_char)
+					{
+					case 'C':
+						oss << configuration_;
+						break;
+
+					case 'L':
+						oss << to_string(message.level);
+						break;
+
+					case 'M':
+						oss << message.literal;
+						break;
+
+					default:
+						oss << current_char;
+						break;
+					}
+				}
+				else
+				{
+					oss << current_char;
+				}
+			}
+
 			return oss.str();
 		}
 

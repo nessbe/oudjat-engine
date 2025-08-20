@@ -49,7 +49,7 @@ namespace oudjat
 			const std::string& argument = arguments_[i];
 			oss << argument;
 
-			if (i < (arguments_.size() - 1))
+			if (i < arguments_.size() - 1)
 			{
 				oss << ' ';
 			}
