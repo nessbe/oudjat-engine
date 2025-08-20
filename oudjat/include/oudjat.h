@@ -26,6 +26,10 @@
 #include "oudjat/core/entry_point.h"
 #include "oudjat/core/window.h"
 
+#include "oudjat/io/sinks.h"
+
+#include "oudjat/logging.h"
+
 #include "oudjat/memory.h"
 
 #ifdef _WIN32

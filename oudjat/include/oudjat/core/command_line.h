@@ -38,6 +38,8 @@ namespace oudjat
 		OUDJAT_API command_line(int argc, char** argv);
 		OUDJAT_API ~command_line() noexcept = default;
 
+		OUDJAT_API std::string to_string() const;
+
 		OUDJAT_API OUDJAT_GETTER index_t size() const noexcept;
 
 		OUDJAT_API OUDJAT_GETTER const std::string& get_program_name() const noexcept;

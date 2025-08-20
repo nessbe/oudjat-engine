@@ -22,11 +22,16 @@
 #include <iostream>
 #include <ostream>
 #include <string>
+#include <vector>
 
 #include "oudjat/attributes.h"
 #include "oudjat/export.h"
+#include "oudjat/io/sinks.h"
 #include "oudjat/logging/log_level.h"
 #include "oudjat/logging/log_message.h"
+#include "oudjat/memory.h"
+
+using namespace oudjat::io;
 
 namespace oudjat
 {
@@ -56,8 +61,17 @@ namespace oudjat
 			OUDJAT_API OUDJAT_INLINE void log_error(const std::string& message);
 			OUDJAT_API OUDJAT_INLINE void log_critical(const std::string& message);
 
+			OUDJAT_API void push_sink(reference<sink> sink);
+
+			template <typename T, typename... VarArgs> reference<T> emplace_sink(VarArgs&&... arguments)
+			{
+				reference<T> sink = make_referenced<T>(std::forward<VarArgs>(arguments)...);
+				sinks_.push_back(sink);
+				return sink;
+			}
+
 		private:
-			std::ostream& out_ = std::cout;
+			std::vector<reference<sink>> sinks_;
 
 			std::string configuration_;
 			log_level min_level_;

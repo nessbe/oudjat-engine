@@ -1,4 +1,4 @@
-// File:        oudjatpch.h
+// File:        null_sink.h
 // Project:     oudjat-engine
 // Repository:  https://github.com/nessbe/oudjat-engine
 //
@@ -17,22 +17,30 @@
 //
 // For more details, see the LICENSE file at the root of the project.
 
-#pragma once
+#include "oudjatpch.h"
 
-#include <fstream>
-#include <functional>
-#include <iostream>
-#include <istream>
-#include <memory>
-#include <optional>
-#include <ostream>
-#include <sstream>
-#include <string>
-#include <unordered_map>
-#include <vector>
+#include "oudjat/io/sinks/file_sink.h"
 
-#include "oudjat/attributes.h"
-#include "oudjat/export.h"
-#include "oudjat/logging/log_macros.h"
-#include "oudjat/memory.h"
-#include "oudjat/utils.h"
+namespace oudjat
+{
+	namespace io
+	{
+		file_sink::file_sink(const std::string& file_path) : file(file_path, std::ios::app) {}
+
+		file_sink::~file_sink()
+		{
+			if (file.is_open())
+			{
+				file.close();
+			}
+		}
+
+		void file_sink::write_raw(const std::string& message)
+		{
+			if (file.is_open())
+			{
+				file << message << std::endl;
+			}
+		}
+	}
+}

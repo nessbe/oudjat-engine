@@ -1,4 +1,4 @@
-// File:        oudjatpch.h
+// File:        sinks.h
 // Project:     oudjat-engine
 // Repository:  https://github.com/nessbe/oudjat-engine
 //
@@ -19,20 +19,7 @@
 
 #pragma once
 
-#include <fstream>
-#include <functional>
-#include <iostream>
-#include <istream>
-#include <memory>
-#include <optional>
-#include <ostream>
-#include <sstream>
-#include <string>
-#include <unordered_map>
-#include <vector>
-
-#include "oudjat/attributes.h"
-#include "oudjat/export.h"
-#include "oudjat/logging/log_macros.h"
-#include "oudjat/memory.h"
-#include "oudjat/utils.h"
+#include "oudjat/io/sinks/console_sink.h"
+#include "oudjat/io/sinks/file_sink.h"
+#include "oudjat/io/sinks/null_sink.h"
+#include "oudjat/io/sinks/sink.h"

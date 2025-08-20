@@ -1,4 +1,4 @@
-// File:        oudjatpch.h
+// File:        console_sink.cp
 // Project:     oudjat-engine
 // Repository:  https://github.com/nessbe/oudjat-engine
 //
@@ -17,22 +17,19 @@
 //
 // For more details, see the LICENSE file at the root of the project.
 
-#pragma once
+#include "oudjatpch.h"
 
-#include <fstream>
-#include <functional>
+#include "oudjat/io/sinks/console_sink.h"
+
 #include <iostream>
-#include <istream>
-#include <memory>
-#include <optional>
-#include <ostream>
-#include <sstream>
-#include <string>
-#include <unordered_map>
-#include <vector>
 
-#include "oudjat/attributes.h"
-#include "oudjat/export.h"
-#include "oudjat/logging/log_macros.h"
-#include "oudjat/memory.h"
-#include "oudjat/utils.h"
+namespace oudjat
+{
+	namespace io
+	{
+		void console_sink::write_raw(const std::string& message)
+		{
+			std::cout << message << std::endl;
+		}
+	}
+}

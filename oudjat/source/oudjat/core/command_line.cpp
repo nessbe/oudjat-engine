@@ -21,6 +21,8 @@
 
 #include "oudjat/core/command_line.h"
 
+#include <sstream>
+
 namespace oudjat
 {
 	command_line::command_line(int argc, char** argv)
@@ -30,12 +32,30 @@ namespace oudjat
 			program_name_ = argv[0];
 		}
 
-		for (int i = 1; i < argc; i++)
+		for (command_line::index_t i = 1; i < argc; i++)
 		{
 			arguments_.emplace_back(argv[i]);
 		}
 
-		argument_count_ = static_cast<index_t>(arguments_.size());
+		argument_count_ = static_cast<command_line::index_t>(arguments_.size());
+	}
+
+	std::string command_line::to_string() const
+	{
+		std::ostringstream oss;
+
+		for (command_line::index_t i = 0; i < arguments_.size(); i++)
+		{
+			const std::string& argument = arguments_[i];
+			oss << argument;
+
+			if (i < (arguments_.size() - 1))
+			{
+				oss << ' ';
+			}
+		}
+
+		return oss.str();
 	}
 
 	command_line::index_t command_line::size() const noexcept

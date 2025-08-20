@@ -21,6 +21,11 @@
 
 #include "oudjat/core/application.h"
 
+#include "oudjat/io/sinks.h"
+#include "oudjat/logging.h"
+
+using namespace oudjat::logging;
+
 namespace oudjat
 {
 	application::application() : window_(nullptr)
@@ -35,6 +40,9 @@ namespace oudjat
 
 	exit_code application::run(command_line arguments)
 	{
+		reference<logger> logger = logger_db::get_or_emplace_logger(LOGGING_CONFIGURATION);
+		logger->emplace_sink<console_sink>();
+
 		return exit_code::undefined;
 	}
 

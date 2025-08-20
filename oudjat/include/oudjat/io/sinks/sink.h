@@ -1,4 +1,4 @@
-// File:        oudjatpch.h
+// File:        sink.h
 // Project:     oudjat-engine
 // Repository:  https://github.com/nessbe/oudjat-engine
 //
@@ -19,20 +19,29 @@
 
 #pragma once
 
-#include <fstream>
-#include <functional>
-#include <iostream>
-#include <istream>
-#include <memory>
-#include <optional>
-#include <ostream>
-#include <sstream>
 #include <string>
-#include <unordered_map>
-#include <vector>
 
-#include "oudjat/attributes.h"
-#include "oudjat/export.h"
-#include "oudjat/logging/log_macros.h"
-#include "oudjat/memory.h"
-#include "oudjat/utils.h"
+namespace oudjat
+{
+	namespace io
+	{
+		class sink
+		{
+		public:
+			virtual ~sink() = default;
+
+			template <typename T> void write(T message)
+			{
+				write(std::to_string(message));
+			}
+
+			void write(const std::string& message)
+			{
+				write_raw(message);
+			}
+
+		private:
+			virtual void write_raw(const std::string& message) = 0;
+		};
+	}
+}

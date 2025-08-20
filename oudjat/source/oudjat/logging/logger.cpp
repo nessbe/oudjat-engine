@@ -98,6 +98,11 @@ namespace oudjat
 			log(log_message{message, log_level::critical});
 		}
 
+		void logger::push_sink(reference<sink> sink)
+		{
+			sinks_.push_back(sink);
+		}
+
 		std::string logger::format_message(const log_message& message) const
 		{
 			std::ostringstream oss;
@@ -109,7 +114,10 @@ namespace oudjat
 
 		void logger::log_raw(const std::string& message)
 		{
-			out_ << message << std::endl;
+			for (const reference<sink>& sink : sinks_)
+			{
+				sink->write(message);
+			}
 		}
 	}
 }

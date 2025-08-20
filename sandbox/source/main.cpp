@@ -37,17 +37,18 @@ public:
 
 	virtual oudjat::exit_code run(oudjat::command_line arguments) override
 	{
+		oudjat::application::run(arguments);
+
 		oudjat::reference<oudjat::logging::logger> logger =
 			oudjat::logging::logger_db::get_or_emplace_logger(LOGGING_CONFIGURATION);
 
-		LOG_TRACE("Running Sandbox application...");
-		LOG_TRACE("Running " + arguments.get_program_name() + " with arguments:");
+		logger->set_level(oudjat::logging::log_level::debug);
+		logger->emplace_sink<oudjat::io::console_sink>();
 
-		for (const std::string& argument : arguments)
-		{
-			std::cout << argument << ' ';
-		}
-		std::cout << std::endl;
+		LOG_TRACE("Running Sandbox application...");
+
+		LOG_TRACE("Running " + arguments.get_program_name());
+		LOG_TRACE("Arguments are: " + arguments.to_string());
 
 		window_ = oudjat::make_scoped<oudjat::windows_window>(360, 180, "My awesome unique window");
 		window_->open();

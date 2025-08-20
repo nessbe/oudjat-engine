@@ -1,4 +1,4 @@
-// File:        oudjatpch.h
+// File:        logging.h
 // Project:     oudjat-engine
 // Repository:  https://github.com/nessbe/oudjat-engine
 //
@@ -19,20 +19,8 @@
 
 #pragma once
 
-#include <fstream>
-#include <functional>
-#include <iostream>
-#include <istream>
-#include <memory>
-#include <optional>
-#include <ostream>
-#include <sstream>
-#include <string>
-#include <unordered_map>
-#include <vector>
-
-#include "oudjat/attributes.h"
-#include "oudjat/export.h"
+#include "oudjat/logging/log_level.h"
 #include "oudjat/logging/log_macros.h"
-#include "oudjat/memory.h"
-#include "oudjat/utils.h"
+#include "oudjat/logging/log_message.h"
+#include "oudjat/logging/logger.h"
+#include "oudjat/logging/logger_db.h"
